@@ -1,0 +1,15 @@
+{
+    "name" : "examples/helloworld",
+    "version" : "1.0.0",
+    "description" : "a helloworld example",
+    "license" : "MIT",
+    "author" : "",
+    "dependencies" : {
+    },
+    "sources" : [
+        "http://spm.assets.m.etao.net"
+    ],
+    "output" : {
+        "helloworld.js" : "."
+    }
+}

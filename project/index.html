@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <!-- seajs -->
+	<script src="http://spm.assets.m.etao.net/mix/libs/seajs/1.2.1/sea-debug.js"></script>
+</head>
+<body scroll="none">
+	<div id="screen-wrap" class="clearfix"></div>
+	<script type="text/javascript" src="./seajsConf.js"></script>
+	<script type="text/javascript">
+		seajs.use('helloworld', function(helloworld) {
+            document.write(helloworld);
+        });
+	</script>
+</body>
+</html>

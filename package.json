@@ -1,0 +1,7 @@
+{
+    "name" : "projinit",
+    "description" : "the initialize for proejct",
+    "author" : "zhuxun",
+    "version" : "0.1.0",
+    "main" : "./src/init.js"
+}
