@@ -25,7 +25,7 @@ function buildFolder(dir, name) {
 	var p = path.join(dir, name);
 	
 	fs.mkdirSync(p, '0644');
-	util.log('build "' + name + '" folder success');
+	util.debug('build "' + name + '" folder success');
 }
 
 function copyFile(dir, name, example) {
@@ -35,7 +35,17 @@ function copyFile(dir, name, example) {
 		;
 
 	fs.writeFileSync(targetPath, srcText, 'utf8');
-	util.log('copy "' + name + '" file success');
+	util.debug('copy "' + name + '" file success');
+}
+
+function spmBuild(dir) {
+	exec('spm upload', {
+		cwd : dir,
+		encoding : 'utf8'
+	}, function(error, stdout, stderr) {
+		(error|| stderr) && util.error(error || stderr);
+		stdout && util.debug(stdout);
+	})
 }
 
 function initialize(opt) {
@@ -47,6 +57,8 @@ function initialize(opt) {
 	opt.files.forEach(function(f) {
 		copyFile(opt.dir, f, opt.example);
 	});
+
+	spmBuild(opt.dir);
 }
 
 

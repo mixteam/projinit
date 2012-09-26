@@ -1,13 +1,12 @@
 {
-    "name" : "examples/helloworld",
+    "name" : "mix/demos/helloworld",
     "version" : "1.0.0",
     "description" : "a helloworld example",
     "license" : "MIT",
-    "author" : "",
-    "dependencies" : {
-    },
+    "author" : "zhuxun <zhuxun.jb@taobao.com>",
+    "dependencies" : {},
     "sources" : [
-        "http://spm.assets.m.etao.net"
+        "http://spm.assets.m.etao.net:8001"
     ],
     "output" : {
         "helloworld.js" : "."
