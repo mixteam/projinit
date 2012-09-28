@@ -11,9 +11,8 @@ var fs = require("fs"),
 
 	options = {
 		dir : './',
-		example : false,
-		folders : ['dist', 'src', 'examples'],
-		files : ['./package.json', './README.md', './seajsConf.js', './.monitor', './index.html', './src/helloworld.js']
+		examples_path : './examples',
+		example : 'helloworld'
 	}
 	;
 
@@ -21,21 +20,37 @@ process.on('uncaughtException', function (err) {
   util.error('Caught exception: ' + err);
 });
 
-function buildFolder(dir, name) {
-	var p = path.join(dir, name);
-	
-	fs.mkdirSync(p, '0644');
-	util.debug('build "' + name + '" folder success');
+function createFolder(path) {
+	fs.mkdirSync(path, '0644');
+	util.debug('create "' + path + '" folder success');
 }
 
-function copyFile(dir, name, example) {
-	var srcPath = path.join(__dirname, '../project', path.basename(name)),
-		targetPath = path.join(dir, name),
-		srcText = fs.readFileSync(srcPath, 'utf8')
+function copyFile(targetPath, srcPath) {
+	var text = fs.readFileSync(srcPath, 'utf8')
 		;
 
-	fs.writeFileSync(targetPath, srcText, 'utf8');
-	util.debug('copy "' + name + '" file success');
+	fs.writeFileSync(targetPath, text, 'utf8');
+	util.debug('copy "' + srcPath + '" file success');
+}
+
+function copyFolder(projPath, exPath) {
+	fs.readdir(exPath, function(err, files) {
+		files.forEach(function(file) {
+			if (file in ['.', '..']) return;
+
+			var srcPath = path.join(exPath, file),
+				targetPath = path.join(projPath, file),
+				stat = fs.statSync(srcPath)
+				;
+
+			if (stat.isFile()) {
+				copyFile(targetPath, srcPath);
+			} else if (stat.isDirectory) {
+				createFolder(targetPath);
+				copyFolder(targetPath, srcPath);
+			}
+		});
+	});
 }
 
 function spmBuild(dir) {
@@ -49,37 +64,34 @@ function spmBuild(dir) {
 }
 
 function initialize(opt) {
+	var exPath = path.join(__dirname, '../', opt.examples_path, opt.example);
 
-	opt.folders.forEach(function(f) {
-		buildFolder(opt.dir, f);
-	});
-
-	opt.files.forEach(function(f) {
-		copyFile(opt.dir, f, opt.example);
-	});
-
+	copyFolder(opt.dir, exPath);
 	spmBuild(opt.dir);
 }
 
 
 if (require.main === module) {
 
-	var argv = process.argv.slice(2)
-		;
+	function p(argv) {
 
-	while (argv.length > 0) {
-		var v = argv.shift();
-		switch(v) {
-			case '-ex' :
-			case '--example' :
-				options.example = true;
-			default:
-				options.dir = v;
-				break;
+		argv = (argv || process.argv).slice(2);
+
+		while (argv.length > 0) {
+			var v = argv.shift();
+			switch(v) {
+				case '-ex' :
+				case '--example' :
+					options.example = argv.shift();
+					break;
+				default:
+					options.dir = v;
+					break;
+			}
 		}
-	}
 
-	initialize(options);
+		initialize(options);
+	}
 } else {
-	module.exports = initialize;
+	module.exports = p;
 }
