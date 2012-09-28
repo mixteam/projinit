@@ -6,7 +6,7 @@
     "author" : "zhuxun <zhuxun.jb@taobao.com>",
     "dependencies" : {},
     "sources" : [
-        "http://spm.assets.m.etao.net:8001"
+        "localhost"
     ],
     "output" : {
         "helloworld.js" : "."

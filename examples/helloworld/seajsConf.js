@@ -6,7 +6,7 @@
 	}
 
 	seajs.config({
-		base : 'http://spm.assets.m.etao.net',
+		base : 'localhost',
 		alias : {
 			'helloworld' : debugVersion('mix/demos/helloworld/1.0.0/helloworld')
 		},

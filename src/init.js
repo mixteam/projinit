@@ -67,7 +67,7 @@ function initialize(opt) {
 	var exPath = path.join(__dirname, '../', opt.examples_path, opt.example);
 
 	copyFolder(opt.dir, exPath);
-	spmBuild(opt.dir);
+	//spmBuild(opt.dir);
 }
 
 
