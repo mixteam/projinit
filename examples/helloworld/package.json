@@ -5,9 +5,6 @@
     "license" : "MIT",
     "author" : "zhuxun <zhuxun.jb@taobao.com>",
     "dependencies" : {},
-    "sources" : [
-        "localhost"
-    ],
     "output" : {
         "helloworld.js" : "."
     }
