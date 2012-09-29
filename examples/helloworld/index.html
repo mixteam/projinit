@@ -14,7 +14,8 @@
 	<script type="text/javascript" src="./seajsConf.js"></script>
 	<script type="text/javascript">
 		seajs.use('helloworld', function(helloworld) {
-            document.write(helloworld);
+			var text = document.createTextNode(helloworld);
+            document.body.appendChild(text);
         });
 	</script>
 </body>
