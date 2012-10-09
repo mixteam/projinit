@@ -21,7 +21,7 @@ process.on('uncaughtException', function (err) {
 });
 
 function createFolder(path) {
-	fs.mkdirSync(path, '0644');
+	fs.mkdirSync(path, '0777');
 	util.debug('create "' + path + '" folder success');
 }
 
