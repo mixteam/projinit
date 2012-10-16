@@ -1,0 +1,18 @@
+{
+    "name" : "itaobao/apps/index",
+    "version" : "0.1.0",
+    "description" : "index for TaobaoPad",
+    "license" : "MIT",
+    "author" : "yourname <yourname@taobao.com>",
+    "dependencies" : {
+        "reset" : "mix/core/base/reset/1.0.0/reset",
+        "selector" : "mix/core/util/dom/selector/1.0.0/selector",
+        "event" : "mix/core/util/dom/event/1.0.0/event",
+        "controller" : "mix/core/util/mvc/controller/0.1.0/controller",
+        "navigator" : "mix/core/util/mvc/navigator/0.1.0/navigator",
+        "view" : "mix/core/util/mvc/view/0.1.0/view"
+    },
+    "output" : {
+        "indexController.js" : "."
+    }
+}
