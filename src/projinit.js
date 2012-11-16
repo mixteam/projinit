@@ -4,7 +4,6 @@
 var fs = require("fs"), 
 	path = require("path"),
 	util = require('util'),
-	mu = require('./mustache'),
 	exec = require('child_process').exec,
 
 	VERSION = '0.1.0'
@@ -53,45 +52,43 @@ function copyFolder(projPath, exPath) {
 	});
 }
 
-function spmBuild(dir) {
-	exec('spm upload', {
-		cwd : dir,
-		encoding : 'utf8'
-	}, function(error, stdout, stderr) {
-		(error|| stderr) && util.error(error || stderr);
-		stdout && util.debug(stdout);
-	})
-}
-
 function initialize(opt) {
 	var exPath = path.join(__dirname, '../', opt.examples_path, opt.example);
 
 	copyFolder(opt.dir, exPath);
-	//spmBuild(opt.dir);
 }
 
+function main(args) {
 
-if (require.main === module) {
-
-	function p(argv) {
-
-		argv = (argv || process.argv).slice(2);
-
-		while (argv.length > 0) {
-			var v = argv.shift();
+	if (args && args instanceof Array){
+		while (args.length > 0) {
+			var v = args.shift();
 			switch(v) {
 				case '-ex' :
 				case '--example' :
-					options.example = argv.shift();
+					options.example = args.shift();
 					break;
+				case '-v':
+				case '--version':
+					util.print('version ' + VERSION);
+					process.exit(0);
 				default:
 					options.dir = v;
 					break;
 			}
 		}
-
-		initialize(options);
+	}else if (args && typeof args === 'object') {
+		for (var k in args) {
+			options[k] = args[k];
+		}
 	}
+
+	initialize(options);
+}
+
+
+if (require.main === module) {
+	main(process.argv.slice(2));
 } else {
-	module.exports = p;
+	module.exports = main;
 }

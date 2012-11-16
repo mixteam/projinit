@@ -1,0 +1,12 @@
+{
+    "name" : "mix/demos/helloworld/apps/hellomix",
+    "version" : "0.1.0",
+    "dependencies" : {
+        "controller" : "mix/core/util/mvc/controller/0.1.0/controller",
+        "navigator" : "mix/core/util/mvc/navigator/0.1.0/navigator",
+        "view" : "mix/core/util/mvc/view/0.1.0/view"
+    },
+    "output" : {
+        "controller.js" : "."
+    }
+}

@@ -1,7 +1,24 @@
 {
-    "name" : "mix/tools/projinit",
-    "description" : "the initialize for proejct",
+    "name" : "projinit",
+    "description" : "Help to initialize a project",
+	"version" : "0.1.0",
     "author" : "zhuxun <zhuxun.jb@taobao.com>",
-    "version" : "0.1.0",
-    "main" : "./src/init.js"
+	"keywords": [
+		"project",
+		"initialize"
+	],
+	"engines": {
+		"node": ">= 0.8.1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/mixteam/projinit.git"
+	},
+    "main" : "./src/projinit.js",
+	"bin": {
+		"projinit": "./src/projinit.js"
+	},
+	"readme": "用于生成一些默认的工程或应用",
+	"_id": "projinit@0.1.0",
+	"_from": "projinit"
 }
