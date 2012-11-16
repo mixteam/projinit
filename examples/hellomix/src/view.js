@@ -6,6 +6,7 @@ define(function(require, exports, module) {
 	// 一些配置项，包括加载模版和样式的地址
 	HelloView.CONFIGS = {
 		name : 'helloview',
+		viewport : '#screen-wrap',
 		loadTmpl : 'apps/hellomix/assets/view.mu',
 		loadStyle : 'apps/hellomix/assets/view.less'
 	}
