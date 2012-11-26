@@ -1,0 +1,14 @@
+{
+    "name" : "{{fullname}}",
+    "version" : "0.1.0",    
+    "description" : "a mix project",
+    "license" : "MIT",
+    "author" : "yourname <yourname@taobao.com>",
+    "dependencies" : {
+        "router" : "mix/core/util/router/0.2.0/router",
+        "navigator" : "mix/core/util/mvc/navigator/0.1.0/navigator"
+    },
+    "output" : {
+        "{{name}}.js" : "."
+    }
+}

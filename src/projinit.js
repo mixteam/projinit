@@ -6,74 +6,118 @@ var fs = require("fs"),
 	util = require('util'),
 	exec = require('child_process').exec,
 
-	VERSION = '0.1.0'
+	VERSION = '0.2.0'
 
 	options = {
 		dir : './',
-		examples_path : './examples',
-		example : 'helloworld'
+		ex_path : './examples',
+		type : 'project',
+		params : {}
 	}
 	;
 
-process.on('uncaughtException', function (err) {
-  util.error('Caught exception: ' + err);
-});
+// process.on('uncaughtException', function (err) {
+//   util.error('Caught exception: ' + err);
+// });
 
-function createFolder(path) {
-	fs.mkdirSync(path, '0777');
-	util.debug('create "' + path + '" folder success');
-}
-
-function copyFile(targetPath, srcPath) {
-	var text = fs.readFileSync(srcPath, 'utf8')
+function replaceParams(str) {
+	var opt = options,
+		params = opt.params
 		;
 
-	fs.writeFileSync(targetPath, text, 'utf8');
-	util.debug('copy "' + srcPath + '" file success');
+	for (var k in params) {
+		str = str.replace(new RegExp('\\{\\{' + k + '\\}\\}', 'g'), params[k]);
+	}
+
+	return str;
 }
 
-function copyFolder(projPath, exPath) {
-	fs.readdir(exPath, function(err, files) {
-		files.forEach(function(file) {
-			if (file in ['.', '..']) return;
+function createFolder(path) {
+	if (fs.existsSync(path)) {
+		util.log(path + '" folder already exist');
+	} else {
+		fs.mkdirSync(path, '0777');
+		util.log('init "' + path + '" folder success');
+	}
+}
 
-			var srcPath = path.join(exPath, file),
-				targetPath = path.join(projPath, file),
-				stat = fs.statSync(srcPath)
+function copyFile(target, src) {
+	var text = replaceParams(fs.readFileSync(src, 'utf8'))
+		;
+
+	fs.writeFileSync(target, text, 'utf8');
+	util.log('init "' + target + '" file success');
+}
+
+function copyFolder(_target, _src) {
+	var opt = options
+		;
+
+	fs.readdir(_src, function(err, files) {
+		files.forEach(function(file) {
+			if (file.match(/^\.+/)) return;
+
+			var src = path.join(_src, file),
+				target = path.join(_target, replaceParams(file)),
+				stat = fs.statSync(src)
 				;
 
 			if (stat.isFile()) {
-				copyFile(targetPath, srcPath);
+				copyFile(target, src);
 			} else if (stat.isDirectory) {
-				createFolder(targetPath);
-				copyFolder(targetPath, srcPath);
+				createFolder(target);
+				copyFolder(target, src);
 			}
 		});
 	});
 }
 
-function initialize(opt) {
-	var exPath = path.join(__dirname, '../', opt.examples_path, opt.example);
+function initialize() {
+	var opt = options,
+		params = opt.params,
+		expath = path.join(__dirname, '../', opt.ex_path, opt.type)
+		;
 
-	copyFolder(opt.dir, exPath);
+	params.fullname = params.fullname.replace('\\', '/');
+	params.name = params.fullname.split('/').pop();
+	params.Name = params.name.replace(/^\w/, function(match) {return match[0].toUpperCase()});
+
+	copyFolder(opt.dir, expath);
 }
 
 function main(args) {
+	var opt = options,
+		params = opt.params
 
 	if (args && args instanceof Array){
 		while (args.length > 0) {
 			var v = args.shift();
 			switch(v) {
-				case '-ex' :
-				case '--example' :
-					options.example = args.shift();
+				case '-ex':
+				case '--example':
+					opt.type = params.fullname = args.shift();	// 兼容0.1.0的api
+					break;
+				case '-p' :
+				case '--project' :
+					opt.type = 'project';
+					params.fullname = args.shift();
+					break;
+				case '-a' :
+				case '--app' :
+					opt.type = 'app';
+					params.fullname = args.shift();
+					break;
+				case '-d' :
+				case '--dir' :
+					opt.dir = v;
 					break;
 				case '-v':
 				case '--version':
 					util.print('version ' + VERSION);
 					process.exit(0);
 				default:
-					options.dir = v;
+					util.print('usage: project [options] fullname');
+					process.exit(0);
 					break;
 			}
 		}
@@ -83,7 +127,7 @@ function main(args) {
 		}
 	}
 
-	initialize(options);
+	initialize();
 }
 
 

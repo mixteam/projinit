@@ -1,0 +1,5 @@
+[spm build -compiler=closure]
+./package.json
+./src/{{name}}Controller.js
+./src/{{name}}Route.js
+./src/{{name}}View.js

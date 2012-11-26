@@ -1,7 +1,7 @@
 {
     "name" : "projinit",
     "description" : "Help to initialize a project",
-	"version" : "0.1.0",
+	"version" : "0.2.0",
     "author" : "zhuxun <zhuxun.jb@taobao.com>",
 	"keywords": [
 		"project",

@@ -1,5 +1,0 @@
-[spm build -compiler=closure]
-./package.json
-./src/indexController.js
-./src/indexRoute.js
-./src/indexView.js

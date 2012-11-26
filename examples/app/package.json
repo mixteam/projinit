@@ -1,7 +1,7 @@
 {
-    "name" : "itaobao/apps/index",
-    "version" : "0.1.0",
-    "description" : "index for TaobaoPad",
+    "name" : "{{fullname}}",
+    "version" : "0.1.0",                                        
+    "description" : "a mix app",                                
     "license" : "MIT",
     "author" : "yourname <yourname@taobao.com>",
     "dependencies" : {
@@ -13,6 +13,6 @@
         "view" : "mix/core/util/mvc/view/0.1.0/view"
     },
     "output" : {
-        "indexController.js" : "."
+        "{{name}}Controller.js" : "."
     }
 }

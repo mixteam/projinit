@@ -1,57 +1,58 @@
 define(function(require, exports, module) {
 	var View = require('view'),
-		IndexView = {}
+		{{Name}}View = {}										// TODO 请修改
 		;
 
 	// 一些配置项，包括加载模版和样式的地址
-	IndexView.CONFIGS = {
-		name : 'indexView',
-		loadTmpl : 'apps/index/assets/indexView.mu',
-		loadStyle : 'apps/index/assets/indexView.less'
+	{{Name}}View.CONFIGS = {
+		name : '{{name}}View',									// TODO 请修改
+		viewport : '#screen-wrap',								// TODO 请修改
+		loadTmpl : 'apps/{{name}}/assets/{{name}}View.mu',		// TODO 请修改
+		loadStyle : 'apps/{{name}}/assets/{{name}}View.less'	// TODO 请修改
 	}
 	
 	// 视图对象的私有变量
-	IndexView.ATTRS = {
+	{{Name}}View.ATTRS = {
 		// 键 : 值，可以用this.get/setAttr来访问
 	}
 
 
 	// 绑定视图模版的消息事件
-	IndexView.EVENTS = {
+	{{Name}}View.EVENTS = {
 		// 消息名 : 方法或方法名，当获取到某消息后，会触发对象的方法
-		'indexView' : 'renderIndex'
 	}
 	
 	// 绑定视图模版的DOM事件
-	IndexView.ATTACH = {
+	{{Name}}View.ATTACH = {
 		// 选择器 : { dom事件 : 句柄函数 }
 	}
 	
 	// 匹配某路由后，对应执行的方法
-	IndexView.ROUTES = {
+	{{Name}}View.ROUTES = {
 		// 路由名 : 方法或方法名
+		'{{name}}View' : 'render{{Name}}'						// TODO 请修改
 	}
 
 	// 视图模版的数据
-	IndexView.DATA = {
+	{{Name}}View.DATA = {
 		// 键 : 值，可以用this.get/setData来访问
 	}
 	
 	// 视图模版的组件数据
-	IndexView.COMPDATA = {
+	{{Name}}View.COMPDATA = {
 		// 键 : 值，可以用this.get/setCompData来访问
 	}
 
 
 	// 视图模版的方法
-	Object.extend(IndexView, {
+	Object.extend({{Name}}View, {
 		// 键 : 方法
-		renderIndex : function() {
+		render{{Name}} : function() {
 			// TODO
 			alert('render it');
 		}
 	});
 
 	// 导出View的一个子类
-	module.exports = View.extend(IndexView);
+	module.exports = View.extend({{Name}}View);
 });
