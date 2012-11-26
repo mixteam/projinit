@@ -1,13 +1,13 @@
 #projinit
 
-Éú³ÉÄ¬ÈÏµÄÏîÄ¿»òÓ¦ÓÃ¡£
+ç”Ÿæˆé»˜è®¤çš„é¡¹ç›®æˆ–åº”ç”¨ã€‚
 
-##Ê¹ÓÃ
+##ä½¿ç”¨
 
 	$ projinit options fullname
 
-* options£º
-	* [-ex/--example] Éú³ÉÀı×Ó£¨¼æÈİ0.1.x£©£¬fullname¿ÉÒÔÊÇhelloworldºÍhellomix
-	* [-p/--project] ÔÚµ±Ç°Ä¿Â¼Éú³ÉmixÏîÄ¿£¬fullnameÎª´øÃüÃû¿Õ¼äµÄÏîÄ¿È«³Æ£¬ÀıÈç£ºitaobao/webapp
-	* [-a/--app] ÔÚµ±Ç°Ä¿Â¼Éú³ÉmixÓ¦ÓÃ£¬fullnameÎª´øÃüÃû¿Õ¼äµÄÏîÄ¿È«³Æ£¬ÀıÈç£ºitaobao/apps/index
-	* [-v/--version] ÏÔÊ¾spmbatch°æ±¾
+* optionsï¼š
+	* [-ex/--example] ç”Ÿæˆä¾‹å­ï¼ˆå…¼å®¹0.1.xï¼‰ï¼Œfullnameå¯ä»¥æ˜¯helloworldå’Œhellomix
+	* [-p/--project] åœ¨å½“å‰ç›®å½•ç”Ÿæˆmixé¡¹ç›®ï¼Œfullnameä¸ºå¸¦å‘½åç©ºé—´çš„é¡¹ç›®å…¨ç§°ï¼Œä¾‹å¦‚ï¼šitaobao/webapp
+	* [-a/--app] åœ¨å½“å‰ç›®å½•ç”Ÿæˆmixåº”ç”¨ï¼Œfullnameä¸ºå¸¦å‘½åç©ºé—´çš„é¡¹ç›®å…¨ç§°ï¼Œä¾‹å¦‚ï¼šitaobao/apps/index
+	* [-v/--version] æ˜¾ç¤ºspmbatchç‰ˆæœ¬
