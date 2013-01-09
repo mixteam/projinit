@@ -12,7 +12,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/mixteam/projinit.git"
+		"url": "git@github.com:mixteam/mixtools_projinit.git"
 	},
     "main" : "./src/projinit.js",
 	"bin": {
